@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://co6jydv8lawgi"]
+
+[ext_resource type="Texture2D" uid="uid://c0hhyva0cb1q8" path="res://2d_camera_components/assets/cfp+cQ.png" id="1_mocwc"]
+[ext_resource type="Script" uid="uid://c25h353pat1sp" path="res://2d_camera_components/demo/canvas_layer.gd" id="1_wft41"]
+[ext_resource type="Script" uid="uid://chplt4u0d616s" path="res://2d_camera_components/camera_panner_mobile.gd" id="2_yfs7n"]
+[ext_resource type="Script" uid="uid://6lexhtadkvka" path="res://2d_camera_components/camera_panner.gd" id="3_lp26k"]
+[ext_resource type="Script" uid="uid://cgintdaa5wpgr" path="res://2d_camera_components/camera_snapper.gd" id="5_5qvd7"]
+
+[node name="Node2D" type="Node2D" unique_id=986066819]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1195768317 node_paths=PackedStringArray("points_holder", "container", "camera_snapper")]
+script = ExtResource("1_wft41")
+points_holder = NodePath("../Points")
+container = NodePath("vbc_buttons")
+camera_snapper = NodePath("../Camera2D/CameraSnapper")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1754758133]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reticle" type="Control" parent="CanvasLayer/CenterContainer" unique_id=1953530006]
+layout_mode = 2
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/CenterContainer/Reticle" unique_id=378210615]
+points = PackedVector2Array(-10, 0, 10, 0)
+width = 4.0
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/CenterContainer/Reticle" unique_id=667922206]
+rotation = 1.5707964
+points = PackedVector2Array(-10, 0, 10, 0)
+width = 4.0
+
+[node name="vbc_buttons" type="VBoxContainer" parent="CanvasLayer" unique_id=1591434563]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
+offset_top = 24.0
+offset_right = -23.0
+offset_bottom = 64.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/vbc_buttons" unique_id=1782577552]
+layout_mode = 2
+text = "Button"
+
+[node name="Map" type="Sprite2D" parent="." unique_id=1335109570]
+position = Vector2(639, 362)
+texture = ExtResource("1_mocwc")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2017289030]
+position = Vector2(0, 6)
+
+[node name="CameraPannerMobile" type="Node" parent="Camera2D" unique_id=195915579 node_paths=PackedStringArray("camera")]
+script = ExtResource("2_yfs7n")
+camera = NodePath("..")
+metadata/_custom_type_script = "uid://chplt4u0d616s"
+
+[node name="CameraPanner" type="Node" parent="Camera2D" unique_id=350785775 node_paths=PackedStringArray("camera")]
+script = ExtResource("3_lp26k")
+camera = NodePath("..")
+metadata/_custom_type_script = "uid://6lexhtadkvka"
+
+[node name="CameraSnapper" type="Node" parent="Camera2D" unique_id=1543144372 node_paths=PackedStringArray("camera")]
+script = ExtResource("5_5qvd7")
+camera = NodePath("..")
+metadata/_custom_type_script = "uid://cgintdaa5wpgr"
+
+[node name="Points" type="Node2D" parent="." unique_id=1411095623]
+
+[node name="Center" type="Marker2D" parent="Points" unique_id=229887057]
+position = Vector2(649, 370)
+
+[node name="Lighthouse" type="Marker2D" parent="Points" unique_id=1545901038]
+position = Vector2(706, 562)
+
+[node name="City" type="Marker2D" parent="Points" unique_id=566050795]
+position = Vector2(911, 177)
+
+[node name="Dragon" type="Marker2D" parent="Points" unique_id=544684151]
+position = Vector2(273, 643)
