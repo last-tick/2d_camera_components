@@ -11,7 +11,7 @@ var dragging := false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_MASK_MIDDLE:
+		if event.button_index == MOUSE_BUTTON_MIDDLE:
 			dragging = event.pressed
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			zoom_in_relative() if zoom_relative else zoom_in()
